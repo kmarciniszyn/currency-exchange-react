@@ -1,14 +1,17 @@
 import { useState } from 'react';
 import { currencies } from '../currencies';
+import Result from './Result';
 import './style.css';
 
-const Form = () => {
+
+const Form = ({ calculateResult, result }) => {
     const [fromCurrency, setFromCurrency] = useState(currencies[0].short);
     const [toCurrency, setToCurrency] = useState(currencies[1].short);
     const [amount, setAmount] = useState(1);
 
     const onFormSubmit = (event) => {
         event.preventDefault();
+        calculateResult(fromCurrency, toCurrency, amount);
     };
 
     return (
@@ -73,6 +76,9 @@ const Form = () => {
                     Oblicz
                 </button>
             </p>
+            <Result
+                result={result}
+            />
             <p className="form__info">
                 Kursy na dzień 02/11/21
             </p>
