@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Form from './Form';
+import Form from './Container/Form';
 import Container from './Container';
 import Clock from './Clock';
 import { currencies } from './currencies';
