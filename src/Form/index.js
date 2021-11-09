@@ -1,8 +1,15 @@
 import { useState } from 'react';
 import { currencies } from '../currencies';
 import Result from './Result';
-import './style.css';
-
+import {
+    Fieldset,
+    LabelText,
+    StyledForm,
+    Button,
+    Info,
+    Legend,
+    Field
+} from './styled';
 
 const Form = ({ calculateResult, result }) => {
     const [fromCurrency, setFromCurrency] = useState(currencies[0].short);
@@ -15,16 +22,17 @@ const Form = ({ calculateResult, result }) => {
     };
 
     return (
-        <form className="form" onSubmit={onFormSubmit}>
-            <fieldset className="form__fieldset">
-                <legend className="form__legend">Kalkulator walut</legend>
+        <StyledForm onSubmit={onFormSubmit}>
+            <Fieldset>
+                <Legend>Kalkulator walut</Legend>
                 <p>
                     <label>
-                        <span className="form__labelText">
+                        <LabelText>
                             Przelicz z:
-                        </span>
-                        <select
-                            className="form__field form__field--select"
+                        </LabelText>
+                        <Field
+                            as="select"
+                            special
                             value={fromCurrency}
                             onChange={({ target }) => setFromCurrency(target.value)}
                         >
@@ -33,16 +41,17 @@ const Form = ({ calculateResult, result }) => {
                                     {currency.name} ({currency.short})
                                 </option>
                             ))}
-                        </select>
+                        </Field>
                     </label>
                 </p>
                 <p>
                     <label>
-                        <span className="form__labelText">
+                        <LabelText>
                             Przelicz na:
-                        </span>
-                        <select
-                            className="form__field form__field--select"
+                        </LabelText>
+                        <Field
+                            as="select"
+                            special
                             value={toCurrency}
                             onChange={({ target }) => setToCurrency(target.value)}
                         >
@@ -51,16 +60,15 @@ const Form = ({ calculateResult, result }) => {
                                     {currency.name} ({currency.short})
                                 </option>
                             ))}
-                        </select>
+                        </Field>
                     </label>
                 </p>
                 <p>
                     <label>
-                        <span className="form__labelText">
+                        <LabelText>
                             Kwota:
-                        </span>
-                        <input
-                            className="form__field"
+                        </LabelText>
+                        <Field
                             value={amount}
                             onChange={({ target }) => setAmount(target.value)}
                             type="number"
@@ -70,19 +78,19 @@ const Form = ({ calculateResult, result }) => {
                         />
                     </label>
                 </p>
-            </fieldset>
+            </Fieldset>
             <p>
-                <button className="form__button">
+                <Button>
                     Oblicz
-                </button>
+                </Button>
             </p>
             <Result
                 result={result}
             />
-            <p className="form__info">
+            <Info>
                 Kursy na dzień 02/11/21
-            </p>
-        </form>
+            </Info>
+        </StyledForm>
     );
 };
 
