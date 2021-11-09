@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import Form from './Container/Form';
 import Container from './Container';
-import Clock from './Clock';
+import Clock from './Container/Clock';
+import Form from './Container/Form';
 import { currencies } from './currencies';
 
 function App() {
