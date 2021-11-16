@@ -1,5 +1,8 @@
 # Currency exchange
-
+This application allows you to convert an amount from one currency to another.
+Exchange rates are sourced from the European Central Bank.
+ 
+This project uses [exchange rates API](https://exchangerate.host/#/#docs)
 ## Technologis
 - React
 - Create React App
