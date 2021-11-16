@@ -12,8 +12,6 @@ This project uses [exchange rates API](https://exchangerate.host/#/#docs)
 ## Demo
 You can try this app [here](https://kmarciniszyn.github.io/currency-exchange-react/)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
 ## Available Scripts
 
 In the project directory, you can run:
