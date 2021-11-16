@@ -2,16 +2,25 @@ import React, { useState } from 'react';
 import Container from './Container';
 import Clock from './Container/Clock';
 import Form from './Container/Form';
-import { currencies } from './currencies';
+import { useRatesData } from './useRatesData';
 
 function App() {
   const [result, setResult] = useState();
 
-  const calculateResult = (fromCurrency, toCurrency, amount) => {
-    const currency = currencies.find(({ short }) => short === fromCurrency);
-    const rate = currency["rate"][toCurrency];
+  const ratesData = useRatesData();
 
-    const resultAmount = rate * amount;
+  const calculateResult = (fromCurrency, toCurrency, amount) => {
+    let resultAmount = 0;
+
+    if (fromCurrency === ratesData.base) {
+      const rate = ratesData.rates[toCurrency];
+      resultAmount = rate * amount;
+
+    } else {
+      const rateFromCurrency = ratesData.rates[fromCurrency];
+      const rateToCurrency = ratesData.rates[toCurrency];
+      resultAmount = (rateToCurrency / rateFromCurrency ) * amount;
+    }
 
     setResult({ fromCurrency, toCurrency, amount: +amount, resultAmount });
   };
@@ -22,6 +31,7 @@ function App() {
       <Form
         calculateResult={calculateResult}
         result={result}
+        ratesData={ratesData}
       />
     </Container>
   );

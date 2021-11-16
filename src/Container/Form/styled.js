@@ -36,7 +36,12 @@ export const Button = styled.button`
 
 export const Info = styled.p`
     text-align: center;
+    line-height: 2;
     color: ${({ theme }) => theme.colors.mediumGray};
+
+    ${({ error }) => error && css`
+        color: ${({ theme }) => theme.colors.red}; 
+    `}
 `;
 
 export const Field = styled.input`
